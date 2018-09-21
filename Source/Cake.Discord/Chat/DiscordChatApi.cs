@@ -54,16 +54,30 @@ namespace Cake.Discord.Chat
         var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 
         var httpResponse = await client.PostAsync(webHookUrl, stringContent);
-
-        var response = await httpResponse.Content.ReadAsStringAsync();
         context.Debug($"Status Code: {httpResponse.StatusCode}");
-        context.Debug($"Response: {response}");
 
-        var parsedResult = new DiscordChatMessageResult(
-            StringComparer.OrdinalIgnoreCase.Equals(response, "ok"),
-            string.Empty,
-            StringComparer.OrdinalIgnoreCase.Equals(response, "ok") ? string.Empty : response
-        );
+        DiscordChatMessageResult parsedResult = null;
+        if(httpResponse.StatusCode != System.Net.HttpStatusCode.NoContent)
+        {
+          var response = await httpResponse.Content.ReadAsStringAsync();
+          context.Debug($"Response: {response}");
+
+          var result = JsonMapper.ToObject(response);
+
+          parsedResult = new DiscordChatMessageResult(
+            false,
+            DateTime.UtcNow.ToString(),
+            result.GetInteger("code").Value,
+            result.GetString("message"));
+        }
+        else
+        {
+          parsedResult = new DiscordChatMessageResult(
+            true,
+            DateTime.UtcNow.ToString(),
+            0,
+            string.Empty);
+        }
 
         context.Debug("Result parsed: {0}", parsedResult);
 
@@ -76,11 +90,11 @@ namespace Cake.Discord.Chat
       }
     }
 
-    private static bool? GetBoolean(this JsonData data, string key)
+    private static int? GetInteger(this JsonData data, string key)
     {
       return (data != null && data.Keys.Contains(key))
-          ? (bool)data[key]
-          : null as bool?;
+          ? (int)data[key]
+          : null as int?;
     }
 
     private static string GetString(this JsonData data, string key)

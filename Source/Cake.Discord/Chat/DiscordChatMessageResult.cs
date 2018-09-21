@@ -25,6 +25,11 @@ namespace Cake.Discord.Chat
         public string TimeStamp { get; }
 
         /// <summary>
+        /// Error code on failure
+        /// </summary>
+        public int ErrorCode { get; }
+
+        /// <summary>
         /// Error message on failure
         /// </summary>
         public string Error { get; }
@@ -34,11 +39,13 @@ namespace Cake.Discord.Chat
         /// </summary>
         /// <param name="ok">Indicating success or failure</param>
         /// <param name="timeStamp">Timestamp of the message</param>
+        /// <param name="errorCode">Error code on failure</param>
         /// <param name="error">Error message on failure</param>
-        public DiscordChatMessageResult(bool ok, string timeStamp, string error)
+        public DiscordChatMessageResult(bool ok, string timeStamp, int errorCode, string error)
         {
             Ok = ok;
             TimeStamp = timeStamp;
+            ErrorCode = errorCode;
             Error = error;
         }
 
@@ -53,6 +60,8 @@ namespace Cake.Discord.Chat
             builder.Append(Ok);
             builder.Append(", TimeStamp = ");
             builder.Append(TimeStamp);
+            builder.Append(", ErrorCode = ");
+            builder.Append(ErrorCode);
             builder.Append(", Error = ");
             builder.Append(Error);
             builder.Append(" }");
