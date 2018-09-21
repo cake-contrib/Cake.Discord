@@ -45,6 +45,8 @@ namespace Cake.Discord.Chat
           {
             content,
             username = messageSettings.UserName ?? "CakeBuild",
+            avatar_url = messageSettings.AvatarUrl?.ToString() ?? new Uri("https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png").ToString(),
+            tts = messageSettings.Tts
           });
 
       context.Debug("Parameter: {0}", json);

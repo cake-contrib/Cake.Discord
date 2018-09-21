@@ -20,9 +20,15 @@ namespace Cake.Discord.Chat
         public string UserName { get; set; }
 
         /// <summary>
-        /// URL to an image to use as the icon for this message
+        /// URL to an image to use as the avatar for this message
         /// </summary>
-        public Uri IconUrl { get; set; }
+        public Uri AvatarUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this message is a
+        /// Text to Speech message
+        /// </summary>
+        public bool Tts { get; set; }
 
         /// <summary>
         /// Optional flag for if should throw exception on failure
