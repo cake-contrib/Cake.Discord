@@ -54,7 +54,10 @@ try
     var postMessageResult = Discord.Chat.PostMessage(
         webHookUrl:"https://discordapp.com/api/webhooks/491746448291921920/vhj3a4thXNZldKXdcoJQfDrfkD-hHZVYbGC6hnR58c0yB1erFDfJ8KWU5dyFD-t12RKP",
         content:"This is a custom avatar and name message.",
-        messageSettings:new DiscordChatMessageSettings { UserName = "gep13", AvatarUrl = new Uri("https://avatars0.githubusercontent.com/u/1271146?s=400&v=4") }
+        messageSettings:new DiscordChatMessageSettings {
+            UserName = "gep13",
+            AvatarUrl = new Uri("https://avatars0.githubusercontent.com/u/1271146?s=400&v=4")
+            }
         );
 
     if (postMessageResult.Ok)
