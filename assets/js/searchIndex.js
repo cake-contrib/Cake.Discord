@@ -1,122 +1,105 @@
 
-var camelCaseTokenizer = function (builder) {
-
-  var pipelineFunction = function (token) {
+var camelCaseTokenizer = function (obj) {
     var previous = '';
-    // split camelCaseString to on each word and combined words
-    // e.g. camelCaseTokenizer -> ['camel', 'case', 'camelcase', 'tokenizer', 'camelcasetokenizer']
-    var tokenStrings = token.toString().trim().split(/[\s\-]+|(?=[A-Z])/).reduce(function(acc, cur) {
-      var current = cur.toLowerCase();
-      if (acc.length === 0) {
-        previous = current;
-        return acc.concat(current);
-      }
-      previous = previous.concat(current);
-      return acc.concat([current, previous]);
+    return obj.toString().trim().split(/[\s\-]+|(?=[A-Z])/).reduce(function(acc, cur) {
+        var current = cur.toLowerCase();
+        if(acc.length === 0) {
+            previous = current;
+            return acc.concat(current);
+        }
+        previous = previous.concat(current);
+        return acc.concat([current, previous]);
     }, []);
-
-    // return token for each string
-    // will copy any metadata on input token
-    return tokenStrings.map(function(tokenString) {
-      return token.clone(function(str) {
-        return tokenString;
-      })
-    });
-  }
-
-  lunr.Pipeline.registerFunction(pipelineFunction, 'camelCaseTokenizer')
-
-  builder.pipeline.before(lunr.stemmer, pipelineFunction)
 }
+lunr.tokenizer.registerFunction(camelCaseTokenizer, 'camelCaseTokenizer')
 var searchModule = function() {
-    var documents = [];
     var idMap = [];
-    function a(a,b) { 
-        documents.push(a);
-        idMap.push(b); 
+    function y(e) { 
+        idMap.push(e); 
     }
-
-    a(
-        {
-            id:0,
-            title:"DiscordChatMessageResult",
-            content:"DiscordChatMessageResult",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageResult',
-            title:"DiscordChatMessageResult",
-            description:""
-        }
-    );
-    a(
-        {
-            id:1,
-            title:"DiscordChatMessageSettings",
-            content:"DiscordChatMessageSettings",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageSettings',
-            title:"DiscordChatMessageSettings",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
-            title:"DiscordChatProvider",
-            content:"DiscordChatProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
-            title:"DiscordChatProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:3,
-            title:"DiscordProvider",
-            content:"DiscordProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord/DiscordProvider',
-            title:"DiscordProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:4,
-            title:"DiscordAliases",
-            content:"DiscordAliases",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord/DiscordAliases',
-            title:"DiscordAliases",
-            description:""
-        }
-    );
     var idx = lunr(function() {
-        this.field('title');
+        this.field('title', { boost: 10 });
         this.field('content');
-        this.field('description');
-        this.field('tags');
+        this.field('description', { boost: 5 });
+        this.field('tags', { boost: 50 });
         this.ref('id');
-        this.use(camelCaseTokenizer);
+        this.tokenizer(camelCaseTokenizer);
 
         this.pipeline.remove(lunr.stopWordFilter);
         this.pipeline.remove(lunr.stemmer);
-        documents.forEach(function (doc) { this.add(doc) }, this)
+    });
+    function a(e) { 
+        idx.add(e); 
+    }
+
+    a({
+        id:0,
+        title:"DiscordChatProvider",
+        content:"DiscordChatProvider",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:1,
+        title:"DiscordAliases",
+        content:"DiscordAliases",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:2,
+        title:"DiscordChatMessageSettings",
+        content:"DiscordChatMessageSettings",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:3,
+        title:"DiscordProvider",
+        content:"DiscordProvider",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:4,
+        title:"DiscordChatMessageResult",
+        content:"DiscordChatMessageResult",
+        description:'',
+        tags:''
+    });
+
+    y({
+        url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
+        title:"DiscordChatProvider",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Discord/api/Cake.Discord/DiscordAliases',
+        title:"DiscordAliases",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageSettings',
+        title:"DiscordChatMessageSettings",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Discord/api/Cake.Discord/DiscordProvider',
+        title:"DiscordProvider",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageResult',
+        title:"DiscordChatMessageResult",
+        description:""
     });
 
     return {

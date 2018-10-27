@@ -71,7 +71,7 @@ h1 {
   background-color: #337ab7;
 }
 .main-header .navbar .nav > li > a {
-  color: #fff;
+  color: white;
 }
 .main-header .navbar .nav > li > a:hover,
 .main-header .navbar .nav > li > a:active,
@@ -84,14 +84,14 @@ h1 {
   color: #f6f6f6;
 }
 .main-header .navbar .sidebar-toggle {
-  color: #fff;
+  color: white;
 }
 .main-header .navbar .sidebar-toggle:hover {
   color: #f6f6f6;
   background: rgba(0, 0, 0, 0.1);
 }
 .main-header .navbar .sidebar-toggle {
-  color: #fff;
+  color: white;
 }
 .main-header .navbar .sidebar-toggle:hover {
   background-color: #2e6da4;
@@ -107,7 +107,7 @@ h1 {
     background-color: rgba(255, 255, 255, 0.1);
   }
   .main-header .navbar .dropdown-menu li a {
-    color: #fff;
+    color: white;
   }
   .main-header .navbar .dropdown-menu li a:hover {
     background: #2e6da4;
@@ -115,7 +115,7 @@ h1 {
 }
 .main-header .logo {
   background-color: #337ab7;
-  color: #fff;
+  color: white;
   border-bottom: 0 solid transparent;
 }
 .main-header .logo:hover {
@@ -152,7 +152,7 @@ h1 {
   background-color: #f4f4f4;
   padding: 8px 16px;
   border-radius: 6px;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid #dddddd;
 }
 .content,
 .content-header {
@@ -174,7 +174,7 @@ h1 {
 }
 .user-panel > .info,
 .user-panel > .info > a {
-  color: #444;
+  color: #444444;
 }
 .sidebar-menu > li {
   -webkit-transition: border-left-color 0.3s ease;
@@ -191,7 +191,7 @@ h1 {
 }
 .sidebar-menu > li:hover > a,
 .sidebar-menu > li.active > a {
-  color: #000;
+  color: black;
   background: #f4f4f5;
 }
 .sidebar-menu > li.active {
@@ -204,17 +204,17 @@ h1 {
   background: #f4f4f5;
 }
 .sidebar a {
-  color: #444;
+  color: #444444;
 }
 .sidebar a:hover {
   text-decoration: none;
 }
 .treeview-menu > li > a {
-  color: #777;
+  color: #777777;
 }
 .treeview-menu > li.active > a,
 .treeview-menu > li > a:hover {
-  color: #000;
+  color: black;
 }
 .treeview-menu > li.active > a {
   font-weight: 600;
@@ -227,12 +227,12 @@ h1 {
 .sidebar-form input[type="text"],
 .sidebar-form .btn {
   box-shadow: none;
-  background-color: #fff;
+  background-color: white;
   border: 1px solid transparent;
   height: 35px;
 }
 .sidebar-form input[type="text"] {
-  color: #666;
+  color: #666666;
   border-top-left-radius: 2px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -240,14 +240,14 @@ h1 {
 }
 .sidebar-form input[type="text"]:focus,
 .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
-  background-color: #fff;
-  color: #666;
+  background-color: white;
+  color: #666666;
 }
 .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
-  border-left-color: #fff;
+  border-left-color: white;
 }
 .sidebar-form .btn {
-  color: #999;
+  color: #999999;
   border-top-left-radius: 0;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
@@ -368,7 +368,7 @@ h1 {
 }
 .table thead tr {
   background-color: #337ab7;
-  color: #fff;
+  color: white;
 }
 .box {
   border-top-color: #286090;
@@ -395,14 +395,14 @@ h1 {
 }
 .layout-top-nav .main-header > .logo {
   background-color: #337ab7;
-  color: #fff;
+  color: white;
   border-bottom: 0 solid transparent;
 }
 .layout-top-nav .main-header > .logo:hover {
   background-color: #3278b3;
 }
 hr {
-  border-top-color: #B5BBC8;
+  border-top-color: #b5bbc8;
 }
 .lead {
   padding: 10px 20px;
@@ -518,7 +518,7 @@ wbr:after {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #000000;
+  background: black;
   background: rgba(0, 0, 0, 0.7);
   width: 50px;
   height: 50px;
@@ -528,7 +528,7 @@ wbr:after {
   display: none;
 }
 #return-to-top i {
-  color: #fff;
+  color: white;
   margin: 0;
   position: relative;
   left: 16px;
@@ -539,7 +539,7 @@ wbr:after {
   background: rgba(0, 0, 0, 0.9);
 }
 #return-to-top:hover i {
-  color: #fff;
+  color: white;
 }
 /* Code styles */
 
@@ -549,7 +549,7 @@ pre {
   overflow: auto;
   word-wrap: normal;
   word-break: normal;
-  border-color: #ddd;
+  border-color: #dddddd;
   font-size: 12px;
 }
 code a {
@@ -569,18 +569,18 @@ code a {
 .node ellipse,
 .node polygon {
   fill: #eff5fb;
-  stroke: #000;
+  stroke: black;
 }
 .type-node rect,
 .type-node circle,
 .type-node ellipse,
 .type-node polygon {
   fill: #a0c4e4;
-  stroke: #000;
+  stroke: black;
 }
 .cluster rect {
   fill: #f3f3f3 !important;
-  stroke: #ddd !important;
+  stroke: #dddddd !important;
 }
 /* Turbolinks */
 
