@@ -71,7 +71,7 @@ namespace Cake.Discord.Chat
         ///        content:"This is a custom avatar and name message.",
         ///        messageSettings:new DiscordChatMessageSettings {
         ///            UserName = "gep13",
-        ///            AvatarUrl = new Uri("https://avatars0.githubusercontent.com/u/1271146?s=400&v=4")
+        ///            AvatarUrl = new Uri("https://avatars0.githubusercontent.com/u/1271146?s=400%26v=4")
         ///            }
         ///        );
         ///
