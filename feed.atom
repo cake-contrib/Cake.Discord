@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<link rel="self" href="http://cake-contrib.github.io/Cake.Discord" />
+	<id>http://cake-contrib.github.io/Cake.Discord</id>
+	<title>Cake.Discord</title>
+	<rights>2018</rights>
+	<updated>2018-10-27T21:01:48Z</updated>
+</feed>
