@@ -109,6 +109,10 @@
 	</section>
 	<section class="content">
 		<h1 id="post-message">Post Message</h1>
+<p>In order to use Cake.Discord, you will need to add the following to your Cake script:</p>
+<pre><code class="language-csharp">#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord&amp;version=0.1.0"
+</code></pre>
+<p><strong>NOTE:</strong> Depending on the currently released version, you might want to change the above to reflect the current version number.  The above is shown to ensure that the best practice of pinning your Cake Addin version numbers is adhered to.</p>
 <h2 id="using-webhook-url">Using Webhook URL</h2>
 <h3 id="posting-a-message-without-any-settings">Posting a message without any settings</h3>
 <pre><code class="language-csharp">Information("This is a 'normal' message...");

@@ -50,16 +50,16 @@ var searchModule = function() {
 
     a({
         id:2,
-        title:"DiscordAliases",
-        content:"DiscordAliases",
+        title:"DiscordChatProvider",
+        content:"DiscordChatProvider",
         description:'',
         tags:''
     });
 
     a({
         id:3,
-        title:"DiscordChatProvider",
-        content:"DiscordChatProvider",
+        title:"DiscordAliases",
+        content:"DiscordAliases",
         description:'',
         tags:''
     });
@@ -85,14 +85,14 @@ var searchModule = function() {
     });
 
     y({
-        url:'/Cake.Discord/api/Cake.Discord/DiscordAliases',
-        title:"DiscordAliases",
+        url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
+        title:"DiscordChatProvider",
         description:""
     });
 
     y({
-        url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
-        title:"DiscordChatProvider",
+        url:'/Cake.Discord/api/Cake.Discord/DiscordAliases',
+        title:"DiscordAliases",
         description:""
     });
 
