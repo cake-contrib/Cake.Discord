@@ -1,4 +1,6 @@
-﻿#r "bin/Release/netstandard2.0/Cake.Discord.dll"
+﻿//#r "bin/Release/netstandard2.0/Cake.Discord.dll"
+#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord&version=0.1.0"
+
 
 try
 {
