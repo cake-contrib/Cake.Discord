@@ -4,6 +4,14 @@ Title: Examples
 
 # Post Message
 
+In order to use Cake.Discord, you will need to add the following to your Cake script:
+
+```csharp
+#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord&version=0.1.0"
+```
+
+**NOTE:** Depending on the currently released version, you might want to change the above to reflect the current version number.  The above is shown to ensure that the best practice of pinning your Cake Addin version numbers is adhered to.
+
 ## Using Webhook URL
 
 ### Posting a message without any settings
