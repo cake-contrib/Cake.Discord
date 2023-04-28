@@ -346,3 +346,4 @@ Source/Cake.Discord/tools/**
 BuildArtifacts/*
 
 .DS_Store
+/Source/.cr/personal/FavoritesList

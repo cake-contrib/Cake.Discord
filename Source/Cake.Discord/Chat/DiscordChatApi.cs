@@ -51,46 +51,44 @@ namespace Cake.Discord.Chat
 
       context.Debug("Parameter: {0}", json);
 
-      using (var client = new HttpClient())
-      {
-        var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            using var client = new HttpClient();
+            var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-        var httpResponse = await client.PostAsync(webHookUrl, stringContent);
-        context.Debug($"Status Code: {httpResponse.StatusCode}");
+            var httpResponse = await client.PostAsync(webHookUrl, stringContent);
+            context.Debug($"Status Code: {httpResponse.StatusCode}");
 
-        DiscordChatMessageResult parsedResult = null;
-        if(httpResponse.StatusCode != System.Net.HttpStatusCode.NoContent)
-        {
-          var response = await httpResponse.Content.ReadAsStringAsync();
-          context.Debug($"Response: {response}");
+            DiscordChatMessageResult parsedResult = null;
+            if (httpResponse.StatusCode != System.Net.HttpStatusCode.NoContent)
+            {
+                var response = await httpResponse.Content.ReadAsStringAsync();
+                context.Debug($"Response: {response}");
 
-          var result = JsonMapper.ToObject(response);
+                var result = JsonMapper.ToObject(response);
 
-          parsedResult = new DiscordChatMessageResult(
-            false,
-            DateTime.UtcNow.ToString(),
-            result.GetInteger("code").Value,
-            result.GetString("message"));
+                parsedResult = new DiscordChatMessageResult(
+                  false,
+                  DateTime.UtcNow.ToString(),
+                  result.GetInteger("code").Value,
+                  result.GetString("message"));
+            }
+            else
+            {
+                parsedResult = new DiscordChatMessageResult(
+                  true,
+                  DateTime.UtcNow.ToString(),
+                  0,
+                  string.Empty);
+            }
+
+            context.Debug("Result parsed: {0}", parsedResult);
+
+            if (!parsedResult.Ok && messageSettings.ThrowOnFail == true)
+            {
+                throw new CakeException(parsedResult.Error ?? "Failed to send message, unknown error");
+            }
+
+            return parsedResult;
         }
-        else
-        {
-          parsedResult = new DiscordChatMessageResult(
-            true,
-            DateTime.UtcNow.ToString(),
-            0,
-            string.Empty);
-        }
-
-        context.Debug("Result parsed: {0}", parsedResult);
-
-        if (!parsedResult.Ok && messageSettings.ThrowOnFail == true)
-        {
-          throw new CakeException(parsedResult.Error ?? "Failed to send message, unknown error");
-        }
-
-        return parsedResult;
-      }
-    }
 
     private static int? GetInteger(this JsonData data, string key)
     {
