@@ -46,14 +46,25 @@ jobs:
           path: tools
           key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
 
+#      - name: Build project
+#        uses: cake-build/cake-action@v1
+#        with:
+#          script-path: recipe.cake
+#          target: CI
+#          verbosity: Normal
+#          cake-version: 0.38.5
+#          cake-bootstrap: true
+
       - name: Build project
-        uses: cake-build/cake-action@v1
-        with:
-          script-path: recipe.cake
-          target: CI
-          verbosity: Normal
-          cake-version: 0.38.5
-          cake-bootstrap: true
+        if: runner.os != 'Windows'
+        run: |
+          ./build.sh --bootstrap
+          ./build.sh --target=AppVeyor
+      - name: Build project
+        if: runner.os == 'Windows'
+        run: |
+          ./build.ps1 --bootstrap
+          ./build.ps1 --target=AppVeyor
 
       - name: Upload Issues-Report
         uses: actions/upload-artifact@v2
@@ -63,6 +74,7 @@ jobs:
           path: BuildArtifacts/report.html
 
       - name: Upload Packages
+        if: runner.os == 'Windows'
         uses: actions/upload-artifact@v2
         with:
           if-no-files-found: warn
