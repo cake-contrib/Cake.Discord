@@ -8,9 +8,16 @@ BuildParameters.SetParameters(context: Context,
                             title: "Cake.Discord",
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Discord",
-                            appVeyorAccountName: "cakecontrib");
+                            appVeyorAccountName: "cakecontrib",
+                            shouldRunCodecov: false,
+                            shouldPostToGitter: false,
+                            preferredBuildProviderType: BuildProviderType.GitHubActions,
+                            preferredBuildAgentOperatingSystem: PlatformFamily.Windows);
 
 BuildParameters.PrintParameters(Context);
+
+ToolSettings.SetToolPreprocessorDirectives(
+  gitReleaseManagerGlobalTool: "#tool dotnet:?package=GitReleaseManager.Tool&version=0.18.0");
 
 ToolSettings.SetToolSettings(context: Context,
                             dupFinderExcludePattern: new string[] {
