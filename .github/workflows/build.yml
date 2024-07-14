@@ -44,7 +44,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: tools
-          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
+          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake', '.config/dotnet-tools.json') }}
 
       - name: Build project
         uses: cake-build/cake-action@v1
@@ -63,6 +63,7 @@ jobs:
           path: BuildArtifacts/report.html
 
       - name: Upload Packages
+        if: runner.os == 'Windows'
         uses: actions/upload-artifact@v2
         with:
           if-no-files-found: warn
