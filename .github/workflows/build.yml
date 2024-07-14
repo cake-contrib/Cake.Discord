@@ -12,7 +12,7 @@ jobs:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-2022, ubuntu-22.04, macos-12]
 
     env:
       AZURE_PASSWORD: ${{ secrets.AZURE_PASSWORD }}
@@ -44,7 +44,23 @@ jobs:
         uses: actions/cache@v2
         with:
           path: tools
-          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
+          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake', '.config/dotnet-tools.json') }}
+
+      # install libgit2-dev on ubuntu, so libgit2sharp works
+      - name: Install libgit-dev
+        if: runner.os == 'Linux'
+        run: sudo apt-get install -y libgit2-dev
+
+      - name: Setup required dotnet versions
+        uses: actions/setup-dotnet@v4.0.1
+        with:
+          dotnet-version: |
+            2.1.818
+            3.1.x
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
 
       - name: Build project
         uses: cake-build/cake-action@v1
@@ -63,6 +79,7 @@ jobs:
           path: BuildArtifacts/report.html
 
       - name: Upload Packages
+        if: runner.os == 'Windows'
         uses: actions/upload-artifact@v2
         with:
           if-no-files-found: warn
