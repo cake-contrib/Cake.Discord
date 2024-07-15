@@ -25,6 +25,10 @@ For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Cake.Addin.Analyzer" Version="0.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Cake.Core" Version="$(CakeVersion)" PrivateAssets="All" />
     <PackageReference Include="Cake.Common" Version="$(CakeVersion)" PrivateAssets="All" />
   </ItemGroup>
