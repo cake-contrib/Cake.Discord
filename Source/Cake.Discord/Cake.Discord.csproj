@@ -7,6 +7,12 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- Since we're using WARNUNGS-AS-ERRORS, we need to disable CCG0009 until we're at the lated version of Cake --> 
+    <CakeContribGuidelinesOmitRecommendedCakeVersion Include="Cake.Common" Visible="false" />
+    <CakeContribGuidelinesOmitRecommendedCakeVersion Include="Cake.Core" Visible="false" />
+  </ItemGroup>
+  
   <PropertyGroup>
     <!-- Properties related to packaging -->
     <Authors>Gary Ewan Park</Authors>
