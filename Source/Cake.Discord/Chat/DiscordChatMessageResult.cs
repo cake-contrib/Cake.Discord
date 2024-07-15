@@ -9,38 +9,18 @@ using Cake.Core.Annotations;
 namespace Cake.Discord.Chat
 {
     /// <summary>
-    /// The result of DiscordProvider Chat API post
+    /// The result of DiscordProvider Chat API post.
     /// </summary>
     [CakeAliasCategory("Discord")]
     public sealed class DiscordChatMessageResult
     {
         /// <summary>
-        /// Indicating success or failure, <see cref="Error"/> for info on failure
+        /// Initializes a new instance of the <see cref="DiscordChatMessageResult"/> class.
         /// </summary>
-        public bool Ok { get; }
-
-        /// <summary>
-        /// Timestamp of the message
-        /// </summary>
-        public string TimeStamp { get; }
-
-        /// <summary>
-        /// Error code on failure
-        /// </summary>
-        public int ErrorCode { get; }
-
-        /// <summary>
-        /// Error message on failure
-        /// </summary>
-        public string Error { get; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="ok">Indicating success or failure</param>
-        /// <param name="timeStamp">Timestamp of the message</param>
-        /// <param name="errorCode">Error code on failure</param>
-        /// <param name="error">Error message on failure</param>
+        /// <param name="ok">Indicating success or failure.</param>
+        /// <param name="timeStamp">Timestamp of the message.</param>
+        /// <param name="errorCode">Error code on failure.</param>
+        /// <param name="error">Error message on failure.</param>
         public DiscordChatMessageResult(bool ok, string timeStamp, int errorCode, string error)
         {
             Ok = ok;
@@ -50,9 +30,29 @@ namespace Cake.Discord.Chat
         }
 
         /// <summary>
-        /// Converts this instance of value to a string representation
+        /// Gets a value indicating whether the result is a success or failure, <see cref="Error"/> for info on failure.
         /// </summary>
-        /// <returns></returns>
+        public bool Ok { get; }
+
+        /// <summary>
+        /// Gets the timestamp of the message.
+        /// </summary>
+        public string TimeStamp { get; }
+
+        /// <summary>
+        /// Gets the error code on failure.
+        /// </summary>
+        public int ErrorCode { get; }
+
+        /// <summary>
+        /// Gets the error message on failure.
+        /// </summary>
+        public string Error { get; }
+
+        /// <summary>
+        /// Converts this instance of value to a string representation.
+        /// </summary>
+        /// <returns>The string representation.</returns>
         public override string ToString()
         {
             var builder = new StringBuilder();

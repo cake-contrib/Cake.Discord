@@ -1,4 +1,4 @@
-#load nuget:?package=Cake.Recipe&version=1.0.0
+#load nuget:?package=Cake.Recipe&version=3.1.1
 
 Environment.SetVariableNames();
 
@@ -9,13 +9,17 @@ BuildParameters.SetParameters(context: Context,
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Discord",
                             appVeyorAccountName: "cakecontrib",
-                            shouldRunGitVersion: true);
+                            shouldRunDotNetCorePack: true,
+                            shouldRunCodecov: false,
+                            shouldPostToGitter: false,
+                            preferredBuildProviderType: BuildProviderType.GitHubActions,
+                            preferredBuildAgentOperatingSystem: PlatformFamily.Windows);
 
 BuildParameters.PrintParameters(Context);
 
-ToolSettings.SetToolSettings(context: Context,
-                            dupFinderExcludePattern: new string[] {
-                                BuildParameters.RootDirectoryPath + "/Source/Cake.Discord/**/*.AssemblyInfo.cs",
-                                BuildParameters.RootDirectoryPath + "/Source/Cake.Discord/LitJson/**/*.cs" });
+ToolSettings.SetToolPreprocessorDirectives(
+  gitReleaseManagerGlobalTool: "#tool dotnet:?package=GitReleaseManager.Tool&version=0.18.0");
+
+ToolSettings.SetToolSettings(context: Context);
 
 Build.RunDotNetCore();

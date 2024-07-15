@@ -2,13 +2,14 @@
 using Cake.Core;
 using Cake.Core.Annotations;
 
+// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 namespace Cake.Discord
 {
     /// <summary>
-    /// Contains aliases related to DiscordS API
+    /// Contains aliases related to DiscordS API.
     /// </summary>
     [CakeAliasCategory("Discord")]
-    // ReSharper disable once UnusedMember.Global
     public static class DiscordAliases
     {
         /// <summary>
@@ -17,14 +18,15 @@ namespace Cake.Discord
         /// <param name="context">The context.</param>
         /// <returns>A <see cref="DiscordProvider"/> instance.</returns>
         [CakePropertyAlias(Cache = true)]
-        [CakeNamespaceImportAttribute("Cake.Discord.Chat")]
-        // ReSharper disable once UnusedMember.Global
+        [CakeNamespaceImport("Cake.Discord.Chat")]
+
         public static DiscordProvider Discord(this ICakeContext context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
+
             return new DiscordProvider(context);
         }
     }
