@@ -11,6 +11,7 @@
   <ItemGroup>
     <AdditionalFiles Include="$(ProjectDir)../stylecop.json" Link="stylecop.json" />
     <None Include="$(ProjectDir)../.editorconfig" Link=".editorconfig" />
+    <None Include="$(ProjectDir)../../README.md" Link="README.md" PackagePath="" Pack="true" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +33,7 @@ This version was build for Cake v$(CakeVersion)</Description>
     <PackageReleaseNotes>This version was build for Cake v$(CakeVersion).
 For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
     <Version>0.0.0</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
