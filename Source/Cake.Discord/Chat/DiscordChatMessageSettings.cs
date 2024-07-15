@@ -9,29 +9,29 @@ using Cake.Core.Annotations;
 namespace Cake.Discord.Chat
 {
     /// <summary>
-    /// Class that lets you override default API settings
+    /// Class that lets you override default API settings.
     /// </summary>
     [CakeAliasCategory("Discord")]
     public sealed class DiscordChatMessageSettings
     {
         /// <summary>
-        /// Name of bot.
+        /// Gets or sets the name of the bot.
         /// </summary>
         public string UserName { get; set; }
 
         /// <summary>
-        /// URL to an image to use as the avatar for this message
+        /// Gets or sets the URL to an image to use as the avatar for this message.
         /// </summary>
         public Uri AvatarUrl { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this message is a
-        /// Text to Speech message
+        /// Text to Speech message.
         /// </summary>
         public bool Tts { get; set; }
 
         /// <summary>
-        /// Optional flag for if should throw exception on failure
+        /// Gets or sets whether to throw an exception on failure.
         /// </summary>
         public bool? ThrowOnFail { get; set; }
     }

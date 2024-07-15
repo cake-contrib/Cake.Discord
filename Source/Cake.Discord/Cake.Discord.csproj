@@ -4,19 +4,55 @@
     <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net46|AnyCPU'">
-    <DocumentationFile>bin\Debug\net46\Cake.Discord.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net46|AnyCPU'">
-    <DocumentationFile>bin\Release\net46\Cake.Discord.xml</DocumentationFile>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <CodeAnalysisRuleSet>$(ProjectDir)../Cake.Discord.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Core" Version="0.33.0" PrivateAssets="All" />
-    <PackageReference Include="Cake.Common" Version="0.33.0" PrivateAssets="All" />
+    <AdditionalFiles Include="$(ProjectDir)../stylecop.json" Link="stylecop.json" />
+    <None Include="$(ProjectDir)../.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Since we're using WARNINGS-AS-ERRORS, we need to disable CCG0009 until we're at the lated version of Cake -->
+    <CakeContribGuidelinesOmitRecommendedCakeVersion Include="Cake.Common" Visible="false" />
+    <CakeContribGuidelinesOmitRecommendedCakeVersion Include="Cake.Core" Visible="false" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- Properties related to packaging -->
+    <Authors>Gary Ewan Park</Authors>
+    <Copyright>Copyright (c) Cake Contributions 2018 - Present</Copyright>
+    <Description>Cake AddIn that extends Cake with ability to send messages to Discord.
+This version was build for Cake v$(CakeVersion)</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/cake-contrib/Cake.Discord</PackageProjectUrl>
+    <PackageTags>cake;script;build;discord;cake-addin;addin;cake-build</PackageTags>
+    <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
+    <PackageReleaseNotes>This version was build for Cake v$(CakeVersion).
+For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
+    <Version>0.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cake.Addin.Analyzer" Version="0.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Cake.Core" Version="$(CakeVersion)" PrivateAssets="All" />
+    <PackageReference Include="Cake.Common" Version="$(CakeVersion)" PrivateAssets="All" />
+    <PackageReference Include="CakeContrib.Guidelines" Version="1.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">

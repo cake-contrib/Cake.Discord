@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Cake.Core;
 using Cake.Core.Annotations;
 
@@ -12,14 +11,23 @@ namespace Cake.Discord.Chat
     [CakeAliasCategory("Discord")]
     public sealed class DiscordChatProvider
     {
-        private readonly ICakeContext _context;
+        private readonly ICakeContext context;
 
         /// <summary>
-        /// Post message to Discord WebHook
+        /// Initializes a new instance of the <see cref="DiscordChatProvider"/> class.
         /// </summary>
-       /// <param name="webHookUrl">The URL for the webhook that messages should be sent to.</param>
+        /// <param name="context">The context.</param>
+        public DiscordChatProvider(ICakeContext context)
+        {
+            this.context = context;
+        }
+
+        /// <summary>
+        /// Post message to Discord WebHook.
+        /// </summary>
+        /// <param name="webHookUrl">The URL for the webhook that messages should be sent to.</param>
         /// <param name="content">Content of the message to send.</param>
-        /// <returns>Returns success/errorcode/error/timestamp <see cref="DiscordChatMessageResult"/></returns>
+        /// <returns>Returns success/errorcode/error/timestamp <see cref="DiscordChatMessageResult"/>.</returns>
         /// <example>
         /// <code>
         ///     Information("This is a 'normal' message...");
@@ -42,26 +50,24 @@ namespace Cake.Discord.Chat
         [CakeAliasCategory("Chat")]
         public DiscordChatMessageResult PostMessage(
             string webHookUrl,
-            string content
-            )
+            string content)
         {
-            var response = _context.PostMessage(
+            var response = context.PostMessage(
                 webHookUrl,
                 content,
-                new DiscordChatMessageSettings()
-                );
+                new DiscordChatMessageSettings());
             response.Wait();
 
             return response.Result;
         }
 
         /// <summary>
-        /// Post message to Discord WebHook
+        /// Post message to Discord WebHook.
         /// </summary>
         /// <param name="webHookUrl">The URL for the webhook that messages should be sent to.</param>
         /// <param name="content">Content of the message to send.</param>
         /// <param name="messageSettings">Lets you override default settings like UserName, or IconUrl.</param>
-        /// <returns>Returns success/error/timestamp <see cref="DiscordChatMessageResult"/></returns>
+        /// <returns>Returns success/error/timestamp <see cref="DiscordChatMessageResult"/>.</returns>
         /// <example>
         /// <code>
         ///    Information("This is a custom avatar and name message...");
@@ -89,15 +95,14 @@ namespace Cake.Discord.Chat
         public DiscordChatMessageResult PostMessage(
             string webHookUrl,
             string content,
-            DiscordChatMessageSettings messageSettings
-            )
+            DiscordChatMessageSettings messageSettings)
         {
             if (messageSettings == null)
             {
                 throw new ArgumentNullException(nameof(messageSettings));
             }
 
-            var response = _context.PostMessage(
+            var response = context.PostMessage(
                 webHookUrl,
                 content,
                 messageSettings);
@@ -105,15 +110,6 @@ namespace Cake.Discord.Chat
             response.Wait();
 
             return response.Result;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DiscordChatProvider"/> class.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        public DiscordChatProvider(ICakeContext context)
-        {
-            _context = context;
         }
     }
 }
