@@ -81,20 +81,6 @@ var searchModule = function() {
     a(
         {
             id:3,
-            title:"DiscordChatProvider",
-            content:"DiscordChatProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
-            title:"DiscordChatProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:4,
             title:"DiscordAliases",
             content:"DiscordAliases",
             description:'',
@@ -103,6 +89,20 @@ var searchModule = function() {
         {
             url:'/Cake.Discord/api/Cake.Discord/DiscordAliases',
             title:"DiscordAliases",
+            description:""
+        }
+    );
+    a(
+        {
+            id:4,
+            title:"DiscordChatProvider",
+            content:"DiscordChatProvider",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
+            title:"DiscordChatProvider",
             description:""
         }
     );
