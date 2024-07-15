@@ -15,7 +15,7 @@
 This version was build for Cake v$(CakeVersion)</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/cake-contrib/Cake.Discord</PackageProjectUrl>
-    <PackageTags>cake;script;Build;Discord</PackageTags>
+    <PackageTags>cake;script;build;discord;cake-addin;addin;cake-build</PackageTags>
     <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
     <PackageReleaseNotes>This version was build for Cake v$(CakeVersion).
 For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
