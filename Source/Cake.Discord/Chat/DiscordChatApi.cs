@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Cake.Common.Diagnostics;
@@ -36,9 +34,7 @@ namespace Cake.Discord.Chat
                   .TrimEnd('/')
                   .Reverse()
                   .SkipWhile(c => c != '/')
-                  .Reverse()
-          )
-      );
+                  .Reverse()));
 
       var json = ToJson(
           new
@@ -46,7 +42,7 @@ namespace Cake.Discord.Chat
             content,
             username = messageSettings.UserName ?? "CakeBuild",
             avatar_url = messageSettings.AvatarUrl?.ToString() ?? new Uri("https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png").ToString(),
-            tts = messageSettings.Tts
+            tts = messageSettings.Tts,
           });
 
       context.Debug("Parameter: {0}", json);
@@ -59,7 +55,8 @@ namespace Cake.Discord.Chat
         context.Debug($"Status Code: {httpResponse.StatusCode}");
 
         DiscordChatMessageResult parsedResult = null;
-        if(httpResponse.StatusCode != System.Net.HttpStatusCode.NoContent)
+
+        if (httpResponse.StatusCode != System.Net.HttpStatusCode.NoContent)
         {
           var response = await httpResponse.Content.ReadAsStringAsync();
           context.Debug($"Response: {response}");
@@ -110,7 +107,7 @@ namespace Cake.Discord.Chat
     {
       var jsonWriter = new JsonWriter
       {
-        LowerCaseProperties = true
+        LowerCaseProperties = true,
       };
       JsonMapper.ToJson(obj, jsonWriter);
       return jsonWriter.ToString();

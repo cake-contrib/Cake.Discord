@@ -5,14 +5,20 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <CodeAnalysisRuleSet>$(ProjectDir)../Cake.Discord.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Since we're using WARNUNGS-AS-ERRORS, we need to disable CCG0009 until we're at the lated version of Cake --> 
+    <AdditionalFiles Include="$(ProjectDir)../stylecop.json" Link="stylecop.json" />
+    <None Include="$(ProjectDir)../.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Since we're using WARNINGS-AS-ERRORS, we need to disable CCG0009 until we're at the lated version of Cake -->
     <CakeContribGuidelinesOmitRecommendedCakeVersion Include="Cake.Common" Visible="false" />
     <CakeContribGuidelinesOmitRecommendedCakeVersion Include="Cake.Core" Visible="false" />
   </ItemGroup>
-  
+
   <PropertyGroup>
     <!-- Properties related to packaging -->
     <Authors>Gary Ewan Park</Authors>
@@ -36,6 +42,10 @@ For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
     <PackageReference Include="Cake.Core" Version="$(CakeVersion)" PrivateAssets="All" />
     <PackageReference Include="Cake.Common" Version="$(CakeVersion)" PrivateAssets="All" />
     <PackageReference Include="CakeContrib.Guidelines" Version="1.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
