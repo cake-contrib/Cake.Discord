@@ -39,20 +39,6 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"DiscordProvider",
-            content:"DiscordProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord/DiscordProvider',
-            title:"DiscordProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:1,
             title:"DiscordChatProvider",
             content:"DiscordChatProvider",
             description:'',
@@ -61,6 +47,20 @@ var searchModule = function() {
         {
             url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
             title:"DiscordChatProvider",
+            description:""
+        }
+    );
+    a(
+        {
+            id:1,
+            title:"DiscordChatMessageResult",
+            content:"DiscordChatMessageResult",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageResult',
+            title:"DiscordChatMessageResult",
             description:""
         }
     );
@@ -81,14 +81,14 @@ var searchModule = function() {
     a(
         {
             id:3,
-            title:"DiscordChatMessageResult",
-            content:"DiscordChatMessageResult",
+            title:"DiscordProvider",
+            content:"DiscordProvider",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageResult',
-            title:"DiscordChatMessageResult",
+            url:'/Cake.Discord/api/Cake.Discord/DiscordProvider',
+            title:"DiscordProvider",
             description:""
         }
     );
