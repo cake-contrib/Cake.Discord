@@ -5,7 +5,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <NoWarn>NU5048</NoWarn> <!-- For now, we'll fix that next -->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -21,7 +20,6 @@ This version was build for Cake v$(CakeVersion)</Description>
     <PackageReleaseNotes>This version was build for Cake v$(CakeVersion).
 For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
     <Version>0.0.0</Version>
-    <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +29,10 @@ For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
     </PackageReference>
     <PackageReference Include="Cake.Core" Version="$(CakeVersion)" PrivateAssets="All" />
     <PackageReference Include="Cake.Common" Version="$(CakeVersion)" PrivateAssets="All" />
+    <PackageReference Include="CakeContrib.Guidelines" Version="1.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
