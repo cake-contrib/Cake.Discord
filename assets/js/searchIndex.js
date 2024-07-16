@@ -67,14 +67,14 @@ var searchModule = function() {
     a(
         {
             id:2,
-            title:"DiscordChatMessageSettings",
-            content:"DiscordChatMessageSettings",
+            title:"DiscordChatMessageResult",
+            content:"DiscordChatMessageResult",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageSettings',
-            title:"DiscordChatMessageSettings",
+            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageResult',
+            title:"DiscordChatMessageResult",
             description:""
         }
     );
@@ -95,14 +95,14 @@ var searchModule = function() {
     a(
         {
             id:4,
-            title:"DiscordChatMessageResult",
-            content:"DiscordChatMessageResult",
+            title:"DiscordChatMessageSettings",
+            content:"DiscordChatMessageSettings",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageResult',
-            title:"DiscordChatMessageResult",
+            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageSettings',
+            title:"DiscordChatMessageSettings",
             description:""
         }
     );
