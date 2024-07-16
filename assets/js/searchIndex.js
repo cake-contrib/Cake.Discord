@@ -39,48 +39,20 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"DiscordChatProvider",
-            content:"DiscordChatProvider",
+            title:"DiscordChatMessageSettings",
+            content:"DiscordChatMessageSettings",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
-            title:"DiscordChatProvider",
+            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageSettings',
+            title:"DiscordChatMessageSettings",
             description:""
         }
     );
     a(
         {
             id:1,
-            title:"DiscordProvider",
-            content:"DiscordProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord/DiscordProvider',
-            title:"DiscordProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
-            title:"DiscordChatMessageResult",
-            content:"DiscordChatMessageResult",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageResult',
-            title:"DiscordChatMessageResult",
-            description:""
-        }
-    );
-    a(
-        {
-            id:3,
             title:"DiscordAliases",
             content:"DiscordAliases",
             description:'',
@@ -94,15 +66,43 @@ var searchModule = function() {
     );
     a(
         {
-            id:4,
-            title:"DiscordChatMessageSettings",
-            content:"DiscordChatMessageSettings",
+            id:2,
+            title:"DiscordProvider",
+            content:"DiscordProvider",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageSettings',
-            title:"DiscordChatMessageSettings",
+            url:'/Cake.Discord/api/Cake.Discord/DiscordProvider',
+            title:"DiscordProvider",
+            description:""
+        }
+    );
+    a(
+        {
+            id:3,
+            title:"DiscordChatMessageResult",
+            content:"DiscordChatMessageResult",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageResult',
+            title:"DiscordChatMessageResult",
+            description:""
+        }
+    );
+    a(
+        {
+            id:4,
+            title:"DiscordChatProvider",
+            content:"DiscordChatProvider",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatProvider',
+            title:"DiscordChatProvider",
             description:""
         }
     );
