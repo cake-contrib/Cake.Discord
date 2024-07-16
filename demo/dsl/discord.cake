@@ -1,13 +1,20 @@
-﻿//#r "bin/Release/netstandard2.0/Cake.Discord.dll"
-#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord&version=0.1.0"
+﻿#r "../../Source/Cake.Discord/bin/Debug/netstandard2.0/Cake.Discord.dll"
+//#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord"
 
+var url = Argument<string>("url", null);
+
+if (string.IsNullOrEmpty(url))
+{
+    Error("you need to pass a webhook url via `--url=...`");
+    return;
+}
 
 try
 {
     Information("This is a 'normal' message...");
 
     var postMessageResult = Discord.Chat.PostMessage(
-        webHookUrl:"https://discordapp.com/api/webhooks/491746448291921920/vhj3a4thXNZldKXdcoJQfDrfkD-hHZVYbGC6hnR58c0yB1erFDfJ8KWU5dyFD-t12RKP",
+        webHookUrl:url,
         content:"This is a normal message."
         );
 
@@ -30,7 +37,7 @@ try
     Information("This is a 'tts' message...");
 
     var postMessageResult = Discord.Chat.PostMessage(
-        webHookUrl:"https://discordapp.com/api/webhooks/491746448291921920/vhj3a4thXNZldKXdcoJQfDrfkD-hHZVYbGC6hnR58c0yB1erFDfJ8KWU5dyFD-t12RKP",
+        webHookUrl:url,
         content:"This is a TTS message.",
         messageSettings:new DiscordChatMessageSettings { Tts = true }
         );
@@ -54,7 +61,7 @@ try
     Information("This is a custom avatar and name message...");
 
     var postMessageResult = Discord.Chat.PostMessage(
-        webHookUrl:"https://discordapp.com/api/webhooks/491746448291921920/vhj3a4thXNZldKXdcoJQfDrfkD-hHZVYbGC6hnR58c0yB1erFDfJ8KWU5dyFD-t12RKP",
+        webHookUrl:url,
         content:"This is a custom avatar and name message.",
         messageSettings:new DiscordChatMessageSettings {
             UserName = "gep13",
@@ -81,7 +88,7 @@ try
     Information("This is a message with custom formatting...");
 
     var postMessageResult = Discord.Chat.PostMessage(
-        webHookUrl:"https://discordapp.com/api/webhooks/491746448291921920/vhj3a4thXNZldKXdcoJQfDrfkD-hHZVYbGC6hnR58c0yB1erFDfJ8KWU5dyFD-t12RKP",
+        webHookUrl:url,
         content:"This _is_ a `message` with custom formatting from *CakeBuild* using incoming web hook:thumbsup:\r\n```Here is some code```"
         );
 
