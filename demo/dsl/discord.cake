@@ -1,7 +1,10 @@
-﻿#r "../../Source/Cake.Discord/bin/Debug/netstandard2.0/Cake.Discord.dll"
+﻿#r "../../Source/Cake.Discord/bin/Debug/net6.0/Cake.Discord.dll"
 //#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord"
 
 var url = Argument<string>("url", null);
+
+var cakeAssembly = typeof(ICakeContext).Assembly.GetName();
+var cakeName = $"{cakeAssembly.Name ?? "UNKNOWN"} v{cakeAssembly.Version?.ToString() ?? "??.??.??"}";
 
 if (string.IsNullOrEmpty(url))
 {
@@ -15,7 +18,7 @@ try
 
     var postMessageResult = Discord.Chat.PostMessage(
         webHookUrl:url,
-        content:"This is a normal message."
+        content:$"This is a normal message from {cakeName}."
         );
 
     if (postMessageResult.Ok)
@@ -38,7 +41,7 @@ try
 
     var postMessageResult = Discord.Chat.PostMessage(
         webHookUrl:url,
-        content:"This is a TTS message.",
+        content:$"This is a TTS message from {cakeName}.",
         messageSettings:new DiscordChatMessageSettings { Tts = true }
         );
 
@@ -62,9 +65,9 @@ try
 
     var postMessageResult = Discord.Chat.PostMessage(
         webHookUrl:url,
-        content:"This is a custom avatar and name message.",
+        content:$"This is a custom avatar and name message from {cakeName}.",
         messageSettings:new DiscordChatMessageSettings {
-            UserName = "gep13",
+            UserName = cakeName,
             AvatarUrl = new Uri("https://avatars0.githubusercontent.com/u/1271146?s=400&v=4")
             }
         );
@@ -89,7 +92,7 @@ try
 
     var postMessageResult = Discord.Chat.PostMessage(
         webHookUrl:url,
-        content:"This _is_ a `message` with custom formatting from *CakeBuild* using incoming web hook:thumbsup:\r\n```Here is some code```"
+        content:$"This _is_ a `message` with custom formatting from *CakeBuild* using incoming web hook:thumbsup:\r\n```Here is some code``` from {cakeName}"
         );
 
     if (postMessageResult.Ok)
@@ -106,4 +109,5 @@ catch(Exception ex)
     Error("{0}", ex);
 }
 
+Information("Any key to continue.");
 Console.ReadLine();
