@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Discord", "Cake.Discord\Cake.Discord.csproj", "{501A58C8-962C-4140-A4A6-34B7AA22B188}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{961B08A4-C3E9-4E80-A5F8-3B0CC64BCDE9}"
+	ProjectSection(SolutionItems) = preProject
+		Cake.Discord.ruleset = Cake.Discord.ruleset
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
