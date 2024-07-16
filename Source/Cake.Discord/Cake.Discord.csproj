@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
@@ -12,12 +12,6 @@
     <AdditionalFiles Include="$(ProjectDir)../stylecop.json" Link="stylecop.json" />
     <None Include="$(ProjectDir)../.editorconfig" Link=".editorconfig" />
     <None Include="$(ProjectDir)../../README.md" Link="README.md" PackagePath="" Pack="true" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- Since we're using WARNINGS-AS-ERRORS, we need to disable CCG0009 until we're at the lated version of Cake -->
-    <CakeContribGuidelinesOmitRecommendedCakeVersion Include="Cake.Common" Visible="false" />
-    <CakeContribGuidelinesOmitRecommendedCakeVersion Include="Cake.Core" Visible="false" />
   </ItemGroup>
 
   <PropertyGroup>
