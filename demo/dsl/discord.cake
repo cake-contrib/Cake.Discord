@@ -1,4 +1,4 @@
-﻿#r "../../Source/Cake.Discord/bin/Debug/net7.0/Cake.Discord.dll"
+﻿#r "../../Source/Cake.Discord/bin/Debug/net8.0/Cake.Discord.dll"
 //#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord"
 
 var url = Argument<string>("url", null);
