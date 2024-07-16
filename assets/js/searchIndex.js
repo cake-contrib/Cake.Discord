@@ -39,14 +39,14 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"DiscordChatMessageSettings",
-            content:"DiscordChatMessageSettings",
+            title:"DiscordAliases",
+            content:"DiscordAliases",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageSettings',
-            title:"DiscordChatMessageSettings",
+            url:'/Cake.Discord/api/Cake.Discord/DiscordAliases',
+            title:"DiscordAliases",
             description:""
         }
     );
@@ -67,14 +67,14 @@ var searchModule = function() {
     a(
         {
             id:2,
-            title:"DiscordAliases",
-            content:"DiscordAliases",
+            title:"DiscordChatMessageSettings",
+            content:"DiscordChatMessageSettings",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Discord/api/Cake.Discord/DiscordAliases',
-            title:"DiscordAliases",
+            url:'/Cake.Discord/api/Cake.Discord.Chat/DiscordChatMessageSettings',
+            title:"DiscordChatMessageSettings",
             description:""
         }
     );
