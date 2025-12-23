@@ -1,4 +1,4 @@
-#load nuget:?package=Cake.Recipe&version=3.1.1
+#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=4.1.0-alpha0042
 
 Environment.SetVariableNames();
 
@@ -9,9 +9,8 @@ BuildParameters.SetParameters(context: Context,
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Discord",
                             appVeyorAccountName: "cakecontrib",
-                            shouldRunDotNetCorePack: true,
+                            shouldRunDotNetPack: true,
                             shouldRunCodecov: false,
-                            shouldPostToGitter: false,
                             preferredBuildProviderType: BuildProviderType.GitHubActions,
                             preferredBuildAgentOperatingSystem: PlatformFamily.Windows);
 
@@ -22,4 +21,4 @@ ToolSettings.SetToolPreprocessorDirectives(
 
 ToolSettings.SetToolSettings(context: Context);
 
-Build.RunDotNetCore();
+Build.RunDotNet();

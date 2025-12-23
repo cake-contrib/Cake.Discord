@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
@@ -35,9 +35,9 @@ For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Cake.Core" Version="$(CakeVersion)" PrivateAssets="All" />
-    <PackageReference Include="Cake.Common" Version="$(CakeVersion)" PrivateAssets="All" />
-    <PackageReference Include="CakeContrib.Guidelines" Version="1.5.1">
+    <PackageReference Include="Cake.Core" Version="5.0.0" PrivateAssets="All" />
+    <PackageReference Include="Cake.Common" Version="5.0.0" PrivateAssets="All" />
+    <PackageReference Include="CakeContrib.Guidelines" Version="1.7.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
