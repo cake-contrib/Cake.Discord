@@ -1,14 +1,14 @@
 ﻿#r "../../Source/Cake.Discord/bin/Release/net10.0/Cake.Discord.dll"
 //#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord"
 
-var url = Argument<string>("url", null);
+var url = Argument<string>("url", EnvironmentVariable("DISCORD_WEBHOOK_URL", string.Empty));
 
 var cakeAssembly = typeof(ICakeContext).Assembly.GetName();
 var cakeName = $"{cakeAssembly.Name ?? "UNKNOWN"} v{cakeAssembly.Version?.ToString() ?? "??.??.??"}";
 
 if (string.IsNullOrEmpty(url))
 {
-    Error("you need to pass a webhook url via `--url=...`");
+    Error("you need to pass a webhook url via `--url=...` or set the DISCORD_WEBHOOK_URL environment variable");
     return;
 }
 
@@ -109,5 +109,4 @@ catch(Exception ex)
     Error("{0}", ex);
 }
 
-Information("Any key to continue.");
-Console.ReadLine();
+Information("Done.");
