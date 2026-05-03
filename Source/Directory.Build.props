@@ -1,5 +1,7 @@
 <Project>
     <PropertyGroup>
+        <LangVersion>10</LangVersion>
+        <Nullable>enable</Nullable>
         <CakeVersion>4.0.0</CakeVersion>
     </PropertyGroup>
 </Project>

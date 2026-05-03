@@ -48,13 +48,12 @@ namespace Cake.Discord.Chat
       context.Debug("Parameter: {0}", json);
 
       using (var client = new HttpClient())
+      using (var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
+      using (var httpResponse = await client.PostAsync(webHookUrl, stringContent))
       {
-        var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
-
-        var httpResponse = await client.PostAsync(webHookUrl, stringContent);
         context.Debug($"Status Code: {httpResponse.StatusCode}");
 
-        DiscordChatMessageResult parsedResult = null;
+        DiscordChatMessageResult parsedResult;
 
         if (httpResponse.StatusCode != System.Net.HttpStatusCode.NoContent)
         {
@@ -66,8 +65,8 @@ namespace Cake.Discord.Chat
           parsedResult = new DiscordChatMessageResult(
             false,
             DateTime.UtcNow.ToString(),
-            result.GetInteger("code").Value,
-            result.GetString("message"));
+            result.GetInteger("code") ?? 0,
+            result.GetString("message") ?? string.Empty);
         }
         else
         {
@@ -96,7 +95,7 @@ namespace Cake.Discord.Chat
           : null as int?;
     }
 
-    private static string GetString(this JsonData data, string key)
+    private static string? GetString(this JsonData data, string key)
     {
       return (data != null && data.Keys.Contains(key))
           ? (string)data[key]

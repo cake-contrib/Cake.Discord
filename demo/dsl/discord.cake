@@ -1,113 +1,81 @@
-﻿#r "../../Source/Cake.Discord/bin/Release/net10.0/Cake.Discord.dll"
+#r "../../Source/Cake.Discord/bin/Release/net10.0/Cake.Discord.dll"
 //#addin "nuget:https://www.nuget.org/api/v2?package=Cake.Discord"
 
-var url = Argument<string>("url", null);
+var url = Argument<string>("url", EnvironmentVariable("DISCORD_WEBHOOK_URL", string.Empty));
 
 var cakeAssembly = typeof(ICakeContext).Assembly.GetName();
 var cakeName = $"{cakeAssembly.Name ?? "UNKNOWN"} v{cakeAssembly.Version?.ToString() ?? "??.??.??"}";
 
 if (string.IsNullOrEmpty(url))
 {
-    Error("you need to pass a webhook url via `--url=...`");
+    Error("you need to pass a webhook url via `--url=...` or set the DISCORD_WEBHOOK_URL environment variable");
     return;
 }
 
-try
+var sendResults = new List<(string Label, bool Ok, string Detail)>();
+
+void Send(string label, string content, DiscordChatMessageSettings settings = null)
 {
-    Information("This is a 'normal' message...");
-
-    var postMessageResult = Discord.Chat.PostMessage(
-        webHookUrl:url,
-        content:$"This is a normal message from {cakeName}."
-        );
-
-    if (postMessageResult.Ok)
+    Information("Sending: {0}...", label);
+    try
     {
-        Information("Message {0} successfully sent", postMessageResult.TimeStamp);
+        var result = settings == null
+            ? Discord.Chat.PostMessage(webHookUrl: url, content: content)
+            : Discord.Chat.PostMessage(webHookUrl: url, content: content, messageSettings: settings);
+
+        if (result.Ok)
+        {
+            sendResults.Add((label, true, result.TimeStamp));
+            Information("  -> OK at {0}", result.TimeStamp);
+        }
+        else
+        {
+            sendResults.Add((label, false, result.Error ?? "(no error message)"));
+            Error("  -> FAILED: {0}", result.Error);
+        }
     }
-    else
+    catch (Exception ex)
     {
-        Error("Failed to send message: {0}", postMessageResult.Error);
-    }
-}
-catch(Exception ex)
-{
-    Error("{0}", ex);
-}
-
-try
-{
-    Information("This is a 'tts' message...");
-
-    var postMessageResult = Discord.Chat.PostMessage(
-        webHookUrl:url,
-        content:$"This is a TTS message from {cakeName}.",
-        messageSettings:new DiscordChatMessageSettings { Tts = true }
-        );
-
-    if (postMessageResult.Ok)
-    {
-        Information("Message {0} successfully sent", postMessageResult.TimeStamp);
-    }
-    else
-    {
-        Error("Failed to send message: {0}", postMessageResult.Error);
+        sendResults.Add((label, false, $"{ex.GetType().Name}: {ex.Message}"));
+        Error("  -> EXCEPTION: {0}", ex);
     }
 }
-catch(Exception ex)
-{
-    Error("{0}", ex);
-}
 
-try
-{
-    Information("This is a custom avatar and name message...");
+Send(
+    "normal message",
+    $"This is a normal message from {cakeName}.");
 
-    var postMessageResult = Discord.Chat.PostMessage(
-        webHookUrl:url,
-        content:$"This is a custom avatar and name message from {cakeName}.",
-        messageSettings:new DiscordChatMessageSettings {
-            UserName = cakeName,
-            AvatarUrl = new Uri("https://avatars0.githubusercontent.com/u/1271146?s=400&v=4")
-            }
-        );
+Send(
+    "TTS message",
+    $"This is a TTS message from {cakeName}.",
+    new DiscordChatMessageSettings { Tts = true });
 
-    if (postMessageResult.Ok)
+Send(
+    "custom avatar and name",
+    $"This is a custom avatar and name message from {cakeName}.",
+    new DiscordChatMessageSettings
     {
-        Information("Message {0} successfully sent", postMessageResult.TimeStamp);
-    }
-    else
-    {
-        Error("Failed to send message: {0}", postMessageResult.Error);
-    }
-}
-catch(Exception ex)
+        UserName = cakeName,
+        AvatarUrl = new Uri("https://avatars0.githubusercontent.com/u/1271146?s=400&v=4"),
+    });
+
+Send(
+    "custom formatting",
+    $"This _is_ a `message` with custom formatting from *CakeBuild* using incoming web hook:thumbsup:\r\n```Here is some code``` from {cakeName}");
+
+Information("");
+Information("=== Summary ===");
+var ok = sendResults.Count(r => r.Ok);
+var total = sendResults.Count;
+foreach (var r in sendResults)
 {
-    Error("{0}", ex);
+    Information("  [{0}] {1} — {2}", r.Ok ? "OK" : "FAIL", r.Label, r.Detail);
 }
 
-try
+Information("");
+Information("{0} of {1} messages sent successfully.", ok, total);
+
+if (ok != total)
 {
-    Information("This is a message with custom formatting...");
-
-    var postMessageResult = Discord.Chat.PostMessage(
-        webHookUrl:url,
-        content:$"This _is_ a `message` with custom formatting from *CakeBuild* using incoming web hook:thumbsup:\r\n```Here is some code``` from {cakeName}"
-        );
-
-    if (postMessageResult.Ok)
-    {
-        Information("Message {0} successfully sent", postMessageResult.TimeStamp);
-    }
-    else
-    {
-        Error("Failed to send message: {0}", postMessageResult.Error);
-    }
+    throw new Exception($"{total - ok} of {total} Discord webhook posts failed. See log above.");
 }
-catch(Exception ex)
-{
-    Error("{0}", ex);
-}
-
-Information("Any key to continue.");
-Console.ReadLine();
