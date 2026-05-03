@@ -17,12 +17,12 @@ namespace Cake.Discord.Chat
         /// <summary>
         /// Gets or sets the name of the bot.
         /// </summary>
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         /// <summary>
         /// Gets or sets the URL to an image to use as the avatar for this message.
         /// </summary>
-        public Uri AvatarUrl { get; set; }
+        public Uri? AvatarUrl { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this message is a

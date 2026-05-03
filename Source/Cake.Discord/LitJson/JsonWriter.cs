@@ -1,3 +1,5 @@
+#nullable disable
+#pragma warning disable IDISP001, IDISP004, IDISP008 // vendored LitJson — disposal patterns are not the addin's responsibility
 #pragma warning disable SA1124
 #region Header
 /*

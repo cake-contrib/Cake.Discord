@@ -346,3 +346,6 @@ Source/Cake.Discord/tools/**
 BuildArtifacts/*
 
 .DS_Store
+
+# Language service cache files (e.g. Roslyn / IDE language servers)
+*.lscache
